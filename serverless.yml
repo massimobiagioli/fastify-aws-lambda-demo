@@ -1,0 +1,22 @@
+service: fastify-aws-lambda-demo
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-central-1
+
+plugins:
+  - serverless-offline
+
+functions:
+  app:
+    handler: handlers/app.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{any+}
+          method: ANY
